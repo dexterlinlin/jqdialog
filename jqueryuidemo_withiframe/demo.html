@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Fancy Validate - jQuery UI Dialog</title>
+    <link rel="stylesheet" href="../css/jqueryui/jquery-ui.min.css">
+    <script src="../js/spm_modules/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../js/spm_modules/jqueryui/jquery-ui.min.js"></script>
+    <script src="demo.js"></script>
+    <style>
+        body {
+            font-size: 12px;
+        }
+
+        /*jQuery UI fakes*/
+        .ui-widget {
+            font-size: 1em;
+        }
+
+        .ui-dialog .ui-dialog-buttonpane {
+            padding-top: .1em;
+            padding-bottom: .1em;
+        }
+    </style>
+    <script>
+        $(function () {
+            $("#button1").click(function () {
+                $.jqalert("这是普通提示！");
+            });
+            $("#button2").click(function () {
+                $.jqtimeralert("这是自动关闭的提示！", "自动关闭提示",
+                        function () {
+                            $.jqalert("时间到");
+                        });
+            });
+            $("#button3").click(function () {
+                $.jqconfirm("确定要这么做吗？", "确认提示",
+                        function () {
+                            $.jqalert("点了确定");
+                        },
+                        function () {
+                            $.jqalert("点了取消");
+                        });
+            });
+            $("#button4").click(function (e) {
+                if ($.confirm(e, "确定要这么做吗？"))
+                    $.jqalert("点了确定");
+            });
+            $("#button5").click(function (e) {
+                $.jqopen("http://lwme.cnblogs.com/", { title: "我的博客", width: 700, height: 500 });
+            });
+        });
+    </script>
+</head>
+<body>
+<form action="?" id="fancyform">
+    <fieldset>
+        <legend>jQuery UI Dialog</legend>
+        <div>
+            <input type="button" id="button1" value="普通提示"/>
+            <input type="button" id="button2" value="自动关闭提示"/>
+            <input type="button" id="button3" value="确认提示"/>
+            <input type="button" id="button4" value="确认提示2"/>
+            <input type="button" id="button5" value="打开窗口"/>
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>
